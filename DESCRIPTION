@@ -1,7 +1,7 @@
 Package: tidyplot
 Type: Package
 Title: tidyplot: An R package with diversy themes and colors for biological data visualization
-Version: 0.1.0
+Version: 0.1.1
 Author: Puwen Tan
 Maintainer: Puwen Tan <bioinfo_wen@163.com>
 Description: An R package with diversy themes and colors for biological data visualization

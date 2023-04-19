@@ -5,18 +5,17 @@ output: html_notebook
 
 ## Introduction
 
-Here we developed `tidyplot` to make the data visualization easier and better. In this package, we included several commonly used themes in `ggplot2` and a large number of color combinations for biological data visualization. We'll keep updating the themes and color combinations in our package.
+Here we developed [`tidyplot`](https://github.com/hmutpw/tidyplot) to make the data visualization easier and better. In this package, we included several commonly used themes in `ggplot2` and a large number of color combinations for biological data visualization. We'll keep updating the themes and color combinations in our package.
 
 ### 1. Installation
 
-The dependent packages: `ggplot2` and `RColorBrewer` should be installed first.
+The dependent packages:`graphics`, `ggplot2` and `RColorBrewer` should be installed first.
 
 ```{r}
 #install.packages("devtools")
-#devtools::install_github("hmutpw/tidyplot")
+devtools::install_github("hmutpw/tidyplot")
 library(tidyplot)
 ```
-
 
 ### 2. Instructions for colors
 
@@ -30,7 +29,7 @@ The `tidyplot` package includes 19 types of sequential colors with 10 different 
 display.color.all(type = "material")
 ```
 
-##### 2.1.2. To browser all colors in `RColorBrewer` package:
+##### 2.1.2. To browser all colors from `RColorBrewer` package:
 
 ```{r}
 library(RColorBrewer)
@@ -102,7 +101,7 @@ Then, visualize them:
 display.color(colors = RdBu100, color_name = "RdBu100")
 ```
 
-##### 2.3 get all colors you wanted from `tidyplot`
+#### 2.3 get all colors you wanted from `tidyplot`
 
 All the colors in `tidyplot` were deposited in `tidyplot::materialColorBrewer`, you can download the color matrix for your own design.
 

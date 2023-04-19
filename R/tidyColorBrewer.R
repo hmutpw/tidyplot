@@ -1,4 +1,14 @@
-
+material.color.set.names <- c("Developmental.basic",
+                              "Developmental.BuRd",
+                              "Developmental.full",
+                              "heatmap.BuRd",
+                              "heatmap.BuYlRd",
+                              "heatmap.GnPR",
+                              "heatmap.BuGnYl",
+                              "heatmap.BuPu",
+                              "heatmap.GnBuPu",
+                              "Rainbow",
+                              "Discrete")
 ##########
 # 1. material palette colors
 ##########
@@ -78,6 +88,12 @@ brewer.colors <- function(name, n = NULL){
 material.color.set <- function(name = c("Developmental.basic",
                                         "Developmental.BuRd",
                                         "Developmental.full",
+                                        "heatmap.BuRd",
+                                        "heatmap.BuYlRd",
+                                        "heatmap.GnPR",
+                                        "heatmap.BuGnYl",
+                                        "heatmap.BuPu",
+                                        "heatmap.GnBuPu",
                                         "Rainbow",
                                         "Discrete"),
                                n = NULL,
@@ -92,6 +108,12 @@ material.color.set <- function(name = c("Developmental.basic",
                    Developmental.full = materialColorBrewer[brightness, c('Blue', 'Light_blue', 'Cyan', 'Teal', 'Green', 'Light_green',
                                                                           'Lime', 'Yellow', 'Amber', 'Orange', 'Deep_orange', 'Red',
                                                                           'Pink', 'Purple', 'Deep_purple', 'Indigo')],
+                   heatmap.BuRd = rev(brewer.colors(name = "RdBu", n = RColorBrewer::brewer.pal.info["RdBu","maxcolors"])),
+                   heatmap.BuYlRd = rev(brewer.colors(name = "RdYlBu", n = RColorBrewer::brewer.pal.info["RdYlBu","maxcolors"])),
+                   heatmap.GnPR = rev(brewer.colors(name = "PRGn", n = RColorBrewer::brewer.pal.info["PRGn","maxcolors"])),
+                   heatmap.BuGnYl = rev(brewer.colors(name = "YlGnBu", n = RColorBrewer::brewer.pal.info["YlGnBu","maxcolors"])),
+                   heatmap.BuPu = rev(brewer.colors(name = "BuPu", n = RColorBrewer::brewer.pal.info["BuPu","maxcolors"])),
+                   heatmap.GnBuPu = rev(brewer.colors(name = "PuBuGn", n = RColorBrewer::brewer.pal.info["PuBuGn","maxcolors"])),
                    Rainbow = materialColorBrewer[brightness, c('Red', 'Orange', 'Yellow', 'Green', 'Blue', 'Indigo', 'Purple')],
                    Discrete = materialColorBrewer[brightness, c('Red','Blue','Green','Purple','Orange','Indigo','Yellow','Cyan','Brown',
                                                                 'Pink','Light_blue','Light_green','Deep_purple','Amber','Teal',
@@ -138,8 +160,6 @@ display.color <- function(colors, color_name = ""){
 ##########
 # 5. show all colors
 ##########
-
-material.color.set.names <- c("Developmental.basic", "Developmental.BuRd", "Developmental.full", "Rainbow", "Discrete")
 
 #' Display all the colors
 #'

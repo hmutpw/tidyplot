@@ -5,8 +5,9 @@
 \title{Get gradient colors}
 \usage{
 material.color.set(
-  name = c("Developmental.basic", "Developmental.BuRd", "Developmental.full", "Rainbow",
-    "Discrete"),
+  name = c("Developmental.basic", "Developmental.BuRd", "Developmental.full",
+    "heatmap.BuRd", "heatmap.BuYlRd", "heatmap.GnPR", "heatmap.BuGnYl", "heatmap.BuPu",
+    "heatmap.GnBuPu", "Rainbow", "Discrete"),
   n = NULL,
   brightness = 3L
 )
