@@ -1,0 +1,23 @@
+Package: tidyplot
+Type: Package
+Title: tidyplot: An R package with diversy themes and colors for biological data visualization
+Version: 0.1.0
+Author: Puwen Tan
+Maintainer: Puwen Tan <bioinfo_wen@163.com>
+Description: An R package with diversy themes and colors for biological data visualization
+License: MIT
+Encoding: UTF-8
+LazyData: true
+Depends: 
+    R (>= 2.10)
+RoxygenNote: 7.2.3
+Suggests: 
+    knitr,
+    rmarkdown,
+    testthat (>= 3.0.0)
+VignetteBuilder: knitr
+Config/testthat/edition: 3
+Imports:
+    RColorBrewer,
+    ggplot2,
+    graphics
