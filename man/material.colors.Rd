@@ -4,12 +4,14 @@
 \alias{material.colors}
 \title{Get material colors}
 \usage{
-material.colors(name, n = 10)
+material.colors(name, brightness = 3L, mat_out = FALSE)
 }
 \arguments{
-\item{name}{The names of material colors.}
+\item{name}{The name(s) of material colors. To browser all the names of material colors, use `browse.material.colors()`.}
 
-\item{n}{Number of colors you want to get. Default: 10, all color elements.}
+\item{brightness}{The brightness of colors, from 1 to 10. Default: 3}
+
+\item{mat_out}{Output a matrix?}
 }
 \value{
 A vector of colors
@@ -18,5 +20,5 @@ A vector of colors
 Get material colors
 }
 \examples{
-material.colors(name = "Red",n = 6)
+material.colors(name = "Red",brightness = 6)
 }

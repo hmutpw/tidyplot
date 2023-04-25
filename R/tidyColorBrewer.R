@@ -15,25 +15,34 @@ material.color.set.names <- c("Developmental.basic",
 
 #' Get material colors
 #'
-#' @param name The names of material colors.
-#' @param n Number of colors you want to get. Default: 10, all color elements.
+#' @param name The name(s) of material colors. To browser all the names of material colors, use `browse.material.colors()`.
+#' @param brightness The brightness of colors, from 1 to 10. Default: 3
+#' @param mat_out Output a matrix?
 #'
 #' @return A vector of colors
 #' @export
 #'
 #' @examples
-#' material.colors(name = "Red",n = 6)
+#' material.colors(name = "Red",brightness = 6)
 material.colors <- function(name,
-                            n = 10){
+                            brightness = 3L,
+                            mat_out = FALSE){
   material.color.names <- colnames(tidyplot::materialColorBrewer)
-  if(!(name %in% material.color.names)){
+  if(is.character(name) & !all(name %in% (material.color.names))){
     stop("The ",name," is not a valid color name!")
   }
-  if(!(n>0 & n<15)){
-    stop("The ",n," should be an integer between 1 and 10!")
+  if(is.numeric(name) & !all( name>0 & name < 15)){
+    stop("The ",name," should be between 1 and 10!")
   }
-  colPal <- tidyplot::materialColorBrewer[1:n,name]
-  unname(colPal[!is.na(colPal)])
+  if(!(brightness>0 & brightness<15)){
+    stop("The ",brightness," should be an integer between 1 and 10!")
+  }
+  if(mat_out){
+    tidyplot::materialColorBrewer[brightness, name, drop = FALSE]
+  }else{
+    colPal <- tidyplot::materialColorBrewer[brightness, name, drop = TRUE]
+    colPal[!is.na(colPal)]
+  }
 }
 
 
