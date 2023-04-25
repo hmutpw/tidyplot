@@ -2,7 +2,7 @@
 % Please edit documentation in R/ggtheme.R
 \name{tidytheme_basic}
 \alias{tidytheme_basic}
-\title{The simple themes of tidyplot}
+\title{The basic themes of tidyplot}
 \usage{
 tidytheme_basic(
   text.size = 6,
@@ -13,7 +13,7 @@ tidytheme_basic(
   panel.grid.major.x.color = "#757575",
   panel.grid.major.y.color = "#757575",
   axis.text.x.angle = 0,
-  axis.text.x.hjust = 0,
+  axis.text.x.hjust = 0.5,
   axis.text.x.vjust = 0
 )
 }
@@ -41,12 +41,13 @@ required the minimum size of lines should be greater than 0.3 pt.}
 \item{axis.text.x.vjust}{The adjustment of text at x axis. Used when angle is not 0.}
 }
 \value{
-a theme object to ggplot2.
+A theme object to ggplot2.
 }
 \description{
-The simple themes of tidyplot
+The basic themes of tidyplot
 }
 \examples{
-p0 <- ggplot(data = mpg, aes(x = trans, fill = factor(cyl))) + geom_bar(colour = 1, binwidth = 0.2)
+library(ggplot2)
+p0 <- ggplot2::ggplot(data = mpg, aes(x = trans, fill = factor(cyl))) + geom_bar(colour = 1, binwidth = 0.2)
 p0 + tidytheme_basic()
 }

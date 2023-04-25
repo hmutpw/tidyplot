@@ -1,4 +1,4 @@
-#' The simple themes of tidyplot
+#' The basic themes of tidyplot
 #'
 #' @param text.size The size of text in the figure. Default: 6 pt. The Cell, Nature and Science journals
 #' required the size of text should between 5 to 7 pt.
@@ -13,11 +13,13 @@
 #' @param axis.text.x.hjust The adjustment of text at x axis. Used when angle is not 0.
 #' @param axis.text.x.vjust The adjustment of text at x axis. Used when angle is not 0.
 #'
-#' @return a theme object to ggplot2.
+#' @return A theme object to ggplot2.
+#' @importFrom ggplot2 theme element_line element_text element_rect
 #' @export
 #'
 #' @examples
-#' p0 <- ggplot(data = mpg, aes(x = trans, fill = factor(cyl))) + geom_bar(colour = 1, binwidth = 0.2)
+#' library(ggplot2)
+#' p0 <- ggplot2::ggplot(data = mpg, aes(x = trans, fill = factor(cyl))) + geom_bar(colour = 1, binwidth = 0.2)
 #' p0 + tidytheme_basic()
 tidytheme_basic <- function(text.size = 6,
                             line.size = 0.4672897,
@@ -116,6 +118,20 @@ tidytheme_basic <- function(text.size = 6,
 #slope
 ######
 
+#' The slope themes of tidyplot
+#'
+#' @param axis.text.x.angle The angle of text at x axis. Default:45.
+#' @param axis.text.x.hjust The adjustment of text at x axis. Default: 1.
+#' @param axis.text.x.vjust The adjustment of text at x axis. Default:1.
+#' @param ... Other parameters passed to 'tidytheme_basic()'.
+#'
+#' @return A theme object to ggplot2.
+#' @export
+#'
+#' @examples
+#' library(ggplot2)
+#' p0 <- ggplot(data = mpg, aes(x = trans, fill = factor(cyl))) + geom_bar(colour = 1, binwidth = 0.2)
+#' p0 + tidytheme_slope()
 tidytheme_slope <- function(axis.text.x.angle = 45,
                             axis.text.x.hjust = 1,
                             axis.text.x.vjust = 1,
@@ -129,6 +145,22 @@ tidytheme_slope <- function(axis.text.x.angle = 45,
 #clean
 ######
 
+#' The clean themes of tidyplot
+#'
+#' @param border.color The color of borders of figures. Default: NA.
+#' @param axis.line.x.color The color of x axis. Default: black.
+#' @param axis.line.y.color The color of y axis. Default: black.
+#' @param panel.grid.major.x.color The color of major grid lines at x panel, Default: NA.
+#' @param panel.grid.major.y.color The color of major grid lines at y panel, Default: NA.
+#' @param ... Other parameters passed to 'tidytheme_basic()'.
+#'
+#' @return A theme object to ggplot2.
+#' @export
+#'
+#' @examples
+#' library(ggplot2)
+#' p0 <- ggplot(data = mpg, aes(x = trans, fill = factor(cyl))) + geom_bar(colour = 1, binwidth = 0.2)
+#' p0 + tidytheme_clean()
 tidytheme_clean <- function(border.color = NA,
                             axis.line.x.color ='#000000',
                             axis.line.y.color = '#000000',
