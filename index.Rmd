@@ -1,6 +1,9 @@
 ---
-title: "tidyplot: An R package with diversy themes and colors for biological data visualization"
-output: html_notebook
+title: 'tidyplot: An R package with diversy themes and colors for biological data
+  visualization'
+output:
+  html_document:
+    df_print: paged
 ---
 
 ## Introduction
@@ -62,7 +65,7 @@ If you are considering using one type of color to visualize the intensity change
 `tidyplot` with up to 10 different brightness. For example, you can get 6 gradient red colors:
 
 ```{r}
-Reds <- material.colors(name = "Red",n = 6)
+Reds <- material.colors(name = "Red", brightness = 1:6)
 Reds
 ```
 
@@ -107,4 +110,237 @@ All the colors in `tidyplot` were deposited in `tidyplot::materialColorBrewer`, 
 
 
 ### 3. Instructions for themes in `ggplot2`
+
+Here we designed a few themes that are frequently used in data visualization.
+
+#### 3.1 Basic theme `theme_basic()`
+ 
+The basic theme removes background and useless panel grids. It's very useful to remove these element when you editing your figures in Adobe Illustrator (AI).
+
+Here is the default theme:
+
+```{r}
+library(ggplot2)
+library(tidyplot)
+p1 <- ggplot(data = mpg, aes(x = trans, fill = factor(cyl)))+
+  geom_bar(width = 0.5, color = NA)+
+  labs(title = "plot title")+
+  facet_wrap(.~year)
+p1
+```
+
+There are few issues in default theme:
+
+1). The title is not centered-aligned;
+
+2). Gray background;
+
+3). Gray strip background on each panel;
+
+4). Gray background under legend;
+
+5). No axis lines at x and y-axis;
+
+Here is the updated version of theme, we modified the above issues:
+
+1). The CNS journal requires font size between 5 - 7pt, so we set all the font size at 6pt by default;
+
+2). The CNS journal requires line width should be larger the 0.3pt, here we set 1px by default;
+
+3). The text color at x- and y-axis is not black, we set all the font color in black by default;
+
+```{r}
+p1+theme_basic()+ scale_fill_manual(values = material.color.set(name = 'Discrete', brightness = 3))
+```
+
+#### 3.2 Slope theme `theme_slpoe()`
+
+From above figure, you will find the space at x-axis is not enough to show all the items, so you can slope these items by 45 degree using `theme_slope()`.
+
+```{r}
+p1+theme_slope()+scale_fill_manual(values = material.color.set(name = 'Discrete', brightness = 3))
+```
+
+#### 3.3 Slope theme `theme_clean()`
+
+If you prefer the classical theme, you can use `theme_clean()`, we removed the border and only keep the axis lines at x and y-axis:
+
+```{r}
+p1+theme_clean()+scale_fill_manual(values = material.color.set(name = 'Discrete', brightness = 3))
+```
+
+
+All above themes were summarized with my experience when perform data visualization with `ggplot2`. By removing some useless elements from
+your figures will speed up editing your figures with Adobe Illustrator. You can also setting the theme.
+
+#### 3.4 Other themes in `ggplot2`
+
+There are lots of themes in `ggplot2`, such as `theme_bw()`, `theme_linedraw()`, `theme_light()`, `theme_dark()`, `theme_minimal()`, 
+`theme_classic()`, and `theme_void()`. Please refer to [Themes](https://ggplot2-book.org/polishing.html). 
+
+### 4. Commonly used figures in data visualization
+
+#### 4.1 Dot plot
+
+```{r}
+library(ggplot2)
+library(tidyplot)
+
+p2 <- ggplot(data = mpg, mapping = aes(x = displ, y = cty, color = class))+
+  geom_point(shape=16)+
+  scale_color_manual(values = material.color.set(name = 'Discrete', brightness = 5))+
+  theme_basic()
+
+p2
+```
+
+#### 4.2 Bar plot
+
+##### 4.2.1 Bar plot with stack position
+
+```{r}
+p3 <- ggplot(data = mpg, aes(x = trans, y = displ, fill = factor(cyl)))+
+  geom_bar(stat = 'identity', position = 'stack',color=NA, width=0.75)+
+  scale_fill_manual(values = material.color.set(name = 'Discrete', brightness = 3))+
+  theme_slope()+
+  facet_grid(.~year)
+
+p3
+```
+
+##### 4.2.2 Bar plot with dodge position
+
+```{r}
+p4 <- ggplot(data = mpg, aes(x = trans, y = displ, fill = factor(cyl)))+
+  geom_bar(stat = 'identity', position = 'dodge',color=NA)+
+  scale_fill_manual(values = material.color.set(name = 'Discrete', brightness = 3))+
+  theme_basic()
+
+p4
+```
+
+##### 4.2.3 Bar plot with fill position
+
+```{r}
+p5 <- ggplot(data = mpg, aes(x = trans, y = displ, fill = factor(cyl)))+
+  geom_bar(stat = 'identity', position = 'fill',color=NA)+
+  scale_fill_manual(values = material.color.set(name = 'Discrete', brightness = 3))+
+  theme_basic()
+
+p5
+```
+
+##### 4.2.4 Pie plot with fill position
+
+```{r}
+p6 <- ggplot(data = mpg, aes(x = year, y = displ, fill = factor(cyl)))+
+  geom_bar(stat = 'identity', position = 'fill',color=NA)+
+  scale_fill_manual(values = material.color.set(name = 'Discrete', brightness = 3))+
+  coord_polar(theta = "y")+
+  theme_void()
+
+p6
+```
+
+#### 4.3 Violin plot
+
+##### 4.3.1 Violin plot
+
+```{r}
+p7 <- ggplot(data = mpg, aes(x = class, y = displ, color = class, fill=class))+
+  geom_violin(color=NA)+
+  geom_jitter(width=0.25, size=0.5, shape=16, color='#000000', alpha = 1)+
+  scale_fill_manual(values = material.color.set(name = 'Developmental.basic', brightness = 3))+
+  theme_basic()
+
+p7
+```
+
+
+##### 4.3.2 Boxplot
+
+```{r}
+p8 <- ggplot(data = mpg, aes(x = class, y = displ, color = class, fill=class))+
+  geom_boxplot(width=0.4,fill = NA, size=0.5,outlier.colour=NA, alpha = 0.8)+
+  geom_jitter(width=0.2, size = 0.5, shape=16, color='#000000', alpha = 1)+
+  scale_color_manual(values = material.color.set(name = 'Developmental.basic', brightness = 5))+
+  scale_fill_manual(values = material.color.set(name = 'Developmental.basic', brightness = 3))+
+  theme_basic()
+
+p8
+```
+
+#### 4.4 Density plot
+
+##### 4.4.1 The density distribution from the same base level
+
+```{r}
+p9 <- ggplot(data = mpg, aes(x = displ, color = class, fill=class))+
+  geom_density(alpha=0.5)+
+  scale_color_manual(values = material.color.set(name = 'Developmental.basic', brightness = 5))+
+  scale_fill_manual(values = material.color.set(name = 'Developmental.basic', brightness = 3))+
+  theme_basic()
+
+p9
+```
+
+##### 4.4.2 Split the density distribution from y-axis
+
+```{r}
+library(ggridges)
+p10 <- ggplot(data = mpg, aes(x = displ, y = class, color = class, fill=class))+
+  geom_density_ridges_gradient(size = 1, scale = 1.4, panel_scaling = F, alpha=.8,na.rm=T)+
+  scale_color_manual(values = material.color.set(name = 'Developmental.basic', brightness = 5))+
+  scale_fill_manual(values = material.color.set(name = 'Developmental.basic', brightness = 3))+
+  theme_basic()
+p10
+```
+
+##### 4.4.3  Cumulative distribution plot
+
+```{r}
+p11 <- ggplot(data = mpg, aes(x = displ, color = class, fill=class))+
+  stat_ecdf(geom="line")+
+  scale_color_manual(values = material.color.set(name = 'Developmental.basic', brightness = 5))+
+  theme_basic()
+p11
+```
+
+#### 4.5. Radviz plot
+
+##### 4.5.1  Tern plot
+
+Tern plot describe the relative enrichment of three features, suitable for stage-specific enrichment genes among three stages.
+
+```{r}
+library(ggtern)
+df <- data.frame(
+  x = c(0.2, 0.5, 0.3),
+  y = c(0.3, 0.2, 0.5),
+  z = c(0.5, 0.3, 0.2)
+)
+p12 <- ggtern(data = df, mapping = aes(x = x,y = y,z = z))+
+  geom_point()+
+  theme_basic()
+
+p12
+
+```
+
+##### 4.5.2  Radviz plot 
+
+Here we use can visualize the relative enrichment of different types using methods in `SubLocR`, this method can used to visualize relative enrichment with more than 3 stages or any number of stages.
+
+```{r}
+devtools::install_github("hmutpw/SubLocR")
+library(SubLocR)
+data("ESC_RSL_data")
+
+radviz_obj <- getRadObj(input_frm = ESC_RSL_data$D0[1:20,], anchors = c('CE','ME','SNE','CBNE','PE'))
+p13 <- do_RadvizEnrichPlot(rv = radviz_obj, color_by = 'INPUT',point_size = 3)+
+  geom_text(mapping = aes(label=gene_name),size=3)
+p13
+
+```
+
 
