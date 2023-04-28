@@ -1,0 +1,82 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+#### 1.1 points
+
+```{r}
+data <- mtcars
+library(ggplot2)
+p0 <- ggplot(data = mpg, aes(x = trans, fill = factor(cyl))) + geom_bar(colour = 1, 
+    binwidth = 0.2) + labs(title = "plot title")
+p0+theme_basic()+facet_wrap(.~year)
+
+p0+theme_slope_x()+facet_wrap(.~year)
+
+p0+theme_clean()+facet_wrap(.~year)
+
+p0+theme_classic()+facet_wrap(.~year)
+
+
+p0+theme_void()+facet_wrap(.~year)
+```
+
+
+### 1.1 insert colors
+
+```{r}
+library(tidyverse)
+Material_design_colors <- data.table::fread(input = "Material_design_colors.txt",header=T,sep="\t",data.table = T)
+RColorBrewer::brewer.pal.info
+materialColorBrewer <- as.matrix(Material_design_colors[,-1])
+row.names(materialColorBrewer) <- c(paste("A",1:10,sep=""),paste('B',1:4,sep=''))
+
+color_names <- colnames(Material_design_colors)[-1] %>% str_to_title()
+colnames(materialColorBrewer) <- color_names
+
+
+color_mat <- as.matrix(Material_design_colors[,-1])
+
+
+
+Reds <- Material_design_colors$RED[1:10]
+Reds <- accumulate(.x = Reds,.f = c)
+names(Reds) <- 0:9
+
+color <- gradient.colors( brightness = 4,name = "Developmental.basic")
+image(x = 1:length(color), y = 1, z = matrix(1:length(color),ncol=1),col=color)
+color <- gradient.colors(n = 100, brightness = 2,name = "Developmental.full")
+image(x = 1:length(color), y = 1, z = matrix(1:length(color),ncol=1),col=color)
+color <- gradient.colors(n = 100, brightness = 2,name = "Developmental.BuRd")
+image(x = 1:length(color), y = 1, z = matrix(1:length(color),ncol=1),col=color)
+color <- gradient.colors( brightness = 2,name = "Rainbow")
+image(x = 1:length(color), y = 1, z = matrix(1:length(color),ncol=1),col=color)
+
+display.color(colors = "Developmental.full")
+
+
+color <-colorRampPalette(colors = BuWtRd)(100)
+color <-colorRampPalette(colors = BuYlRd)(100)
+
+color <-colorRampPalette(colors = YlGnBu)(100)
+
+image(x = 1:length(color), y = 1, z = matrix(1:length(color),ncol=1),col=color)
+
+test = matrix(rnorm(400), 20, 20)
+
+pheatmap(test, color = color)
+
+rev(RColorBrewer::brewer.pal(n = 9,name = "RdBu"))
+rev(RColorBrewer::brewer.pal(n = 9,name = "RdYlBu"))
+rev(RColorBrewer::brewer.pal(n = 9,name = "PRGn"))
+
+
+
+color <- Discrete.full
+image(1:length(color),1,as.matrix(1:length(color)),col=color, xlab="",ylab="",xaxt="n",yaxt="n",bty="n")
+
+
+
+```
+

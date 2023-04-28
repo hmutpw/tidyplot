@@ -5,8 +5,8 @@
 #' @param line.size The size of lines in the figure. Default: 1 pt. The Cell, Nature and Science journals
 #' required the minimum size of lines should be greater than 0.3 pt.
 #' @param border.color The color of borders of figures. Default: black.
-#' @param axis.line.x.color The color of x axis. Default, NA, not used when border color is black.
-#' @param axis.line.y.color The color of y axis. Default, NA, not used when border color is black.
+#' @param axis.line.x.color The color of x axis. Default, black, not used when border color is black.
+#' @param axis.line.y.color The color of y axis. Default, black, not used when border color is black.
 #' @param panel.grid.major.x.color The color of major grid lines at x panel, Default: gray.
 #' @param panel.grid.major.y.color The color of major grid lines at y panel, Default: gray.
 #' @param axis.text.x.angle The angle of text at x axis.
@@ -20,17 +20,17 @@
 #' @examples
 #' library(ggplot2)
 #' p0 <- ggplot2::ggplot(data = mpg, aes(x = trans, fill = factor(cyl))) + geom_bar(colour = 1, binwidth = 0.2)
-#' p0 + tidytheme_basic()
-tidytheme_basic <- function(text.size = 6,
-                            line.size = 0.4672897,
-                            border.color = '#000000',
-                            axis.line.x.color = NA,
-                            axis.line.y.color = NA,
-                            panel.grid.major.x.color = '#757575',
-                            panel.grid.major.y.color = '#757575',
-                            axis.text.x.angle = 0,
-                            axis.text.x.hjust = 0.5,
-                            axis.text.x.vjust = 0){
+#' p0 + theme_basic()
+theme_basic <- function(text.size = 6,
+                        line.size = 0.4672897,
+                        border.color = '#000000',
+                        axis.line.x.color = '#000000',
+                        axis.line.y.color = '#000000',
+                        panel.grid.major.x.color = '#e0e0e0',
+                        panel.grid.major.y.color = '#e0e0e0',
+                        axis.text.x.angle = 0,
+                        axis.text.x.hjust = 0.5,
+                        axis.text.x.vjust = 0){
   ggplot2::theme(
     line = element_line(colour = '#000000',
                         linewidth = line.size,
@@ -87,11 +87,11 @@ tidytheme_basic <- function(text.size = 6,
                                 linewidth = line.size),
     panel.grid.major.x = element_line(colour = NA,
                                       linewidth = line.size/2,
-                                      linetype = "dashed",
+                                      linetype = 'dashed',
                                       color = panel.grid.major.x.color),
     panel.grid.major.y = element_line(colour = NA,
                                       linewidth = line.size/2,
-                                      linetype = "dashed",
+                                      linetype = 'dashed',
                                       color = panel.grid.major.y.color),
     panel.grid.minor = element_line(size=NA,
                                     colour = NA),
@@ -105,7 +105,7 @@ tidytheme_basic <- function(text.size = 6,
     #---strip
     strip.background = element_rect(fill = NA,
                                     colour = NA),
-    strip.clip = "off",
+    strip.clip = 'off',
     strip.text = element_text(family = 'sans',
                               colour = '#000000',
                               size = text.size,
@@ -131,15 +131,15 @@ tidytheme_basic <- function(text.size = 6,
 #' @examples
 #' library(ggplot2)
 #' p0 <- ggplot(data = mpg, aes(x = trans, fill = factor(cyl))) + geom_bar(colour = 1, binwidth = 0.2)
-#' p0 + tidytheme_slope()
-tidytheme_slope <- function(axis.text.x.angle = 45,
-                            axis.text.x.hjust = 1,
-                            axis.text.x.vjust = 1,
-                            ...){
-  tidytheme_basic(axis.text.x.angle = axis.text.x.angle,
-                  axis.text.x.hjust = axis.text.x.hjust,
-                  axis.text.x.vjust = axis.text.x.vjust,
-                  ...)
+#' p0 + theme_slope()
+theme_slope <- function(axis.text.x.angle = 45,
+                        axis.text.x.hjust = 1,
+                        axis.text.x.vjust = 1,
+                        ...){
+  theme_basic(axis.text.x.angle = axis.text.x.angle,
+              axis.text.x.hjust = axis.text.x.hjust,
+              axis.text.x.vjust = axis.text.x.vjust,
+              ...)
 }
 ######
 #clean
@@ -160,19 +160,19 @@ tidytheme_slope <- function(axis.text.x.angle = 45,
 #' @examples
 #' library(ggplot2)
 #' p0 <- ggplot(data = mpg, aes(x = trans, fill = factor(cyl))) + geom_bar(colour = 1, binwidth = 0.2)
-#' p0 + tidytheme_clean()
-tidytheme_clean <- function(border.color = NA,
-                            axis.line.x.color ='#000000',
-                            axis.line.y.color = '#000000',
-                            panel.grid.major.x.color = NA,
-                            panel.grid.major.y.color = NA,
-                            ...){
-  tidytheme_basic(border.color = border.color,
-                  panel.grid.major.x.color = panel.grid.major.x.color,
-                  panel.grid.major.y.color = panel.grid.major.y.color,
-                  axis.line.x.color = axis.line.x.color,
-                  axis.line.y.color = axis.line.y.color,
-                  ...)
+#' p0 + theme_clean()
+theme_clean <- function(border.color = NA,
+                        axis.line.x.color ='#000000',
+                        axis.line.y.color = '#000000',
+                        panel.grid.major.x.color = NA,
+                        panel.grid.major.y.color = NA,
+                        ...){
+  theme_basic(border.color = border.color,
+              panel.grid.major.x.color = panel.grid.major.x.color,
+              panel.grid.major.y.color = panel.grid.major.y.color,
+              axis.line.x.color = axis.line.x.color,
+              axis.line.y.color = axis.line.y.color,
+              ...)
 }
 
 

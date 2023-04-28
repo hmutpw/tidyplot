@@ -23,7 +23,7 @@ material.color.set.names <- c("Developmental.basic",
 #' @export
 #'
 #' @examples
-#' material.colors(name = "Red",brightness = 6)
+#' material.colors(name = "Red",brightness = 1:6)
 material.colors <- function(name,
                             brightness = 3L,
                             mat_out = FALSE){
@@ -34,7 +34,7 @@ material.colors <- function(name,
   if(is.numeric(name) & !all( name>0 & name < 15)){
     stop("The ",name," should be between 1 and 10!")
   }
-  if(!(brightness>0 & brightness<15)){
+  if(!all(brightness>0 & brightness<15)){
     stop("The ",brightness," should be an integer between 1 and 10!")
   }
   if(mat_out){

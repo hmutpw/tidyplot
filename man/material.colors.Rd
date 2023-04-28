@@ -20,5 +20,5 @@ A vector of colors
 Get material colors
 }
 \examples{
-material.colors(name = "Red",brightness = 6)
+material.colors(name = "Red",brightness = 1:6)
 }
